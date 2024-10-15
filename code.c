@@ -1,6 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+int addbook(int *book_count, char *books[]){
+  char *name;
+  printf("Enter book name: ");
+  fgets(name,sizeof(name),stdin);
+  books[*book_count] = (char*)malloc(sizeof(name)+1);
+  strcpy(books[*book_count],name);
+  *book_count++;
+}
+
 int main(){
   int choice;
   printf("Hello User..\n");
