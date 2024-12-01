@@ -1,10 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int addbook(int *book_count, char *books[], max_books){
+int addbook(int *book_count, char *books[], int max_books){
   if(*book_count > max_books){
     printf("Book library is full!!\n");
-    returnn 0;
+    return 0;
   }
   char *name;
   printf("Enter book name: ");
@@ -14,6 +14,24 @@ int addbook(int *book_count, char *books[], max_books){
   *book_count++;
   printf("Book %s",name," added succesfully.\n");
   return 1;
+}
+
+int displaybook(int *book_count, char *books[], int max_books){
+  if(*book_count <=0){
+    printf("No books in the library to display!");
+    return 0;
+  }
+  char *b_name;
+  printf("Enter the book to check: ");
+  fgets(b_name,sizeof(b_name),stdin);
+  for(int i=0;i<*book_count;i++){
+    if(books[*book_count] == b_name){
+      printf("Yes, %s book is available..",b_name);
+    }else{
+      printf("Sorry, %s book is not available",b_name);
+    }
+  }
+  return 0;
 }
 
 int main(){
