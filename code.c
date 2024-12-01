@@ -1,17 +1,20 @@
 #include<stdio.h>
 #include<stdlib.h>
+#DEFINE MAX_BOOKS 100;
 
 int addbook(int *book_count, char *books[], int max_books){
   if(*book_count > max_books){
     printf("Book library is full!!\n");
     return 0;
   }
-  char *name;
+  char name[100];
   printf("Enter book name: ");
+  getchar();
   fgets(name,sizeof(name),stdin);
-  books[*book_count] = (char*)malloc(sizeof(name)+1);
+  name[strcspn(name,"\n")] = "\0";
+  books[*book_count] = (char*)malloc(strlen(name)+1);
   strcpy(books[*book_count],name);
-  *book_count++;
+  (*book_count)++;
   printf("Book %s",name," added succesfully.\n");
   return 1;
 }
@@ -31,7 +34,7 @@ int displaybook(int *book_count, char *books[], int max_books){
       printf("Sorry, %s book is not available",b_name);
     }
   }
-  return 0;
+  return 1;
 }
 
 int main(){
